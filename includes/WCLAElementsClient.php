@@ -5,7 +5,7 @@
  *
  * @see https://elementsproject.org/en/doc/0.18.1.11/rpc/
  */
-class ElementsClient {
+class WCLAElementsClient {
 
 	protected $host;
 
@@ -14,7 +14,7 @@ class ElementsClient {
 	protected $args = [];
 
 	/**
-	 * ElementsClient constructor.
+	 * WCLAElementsClient constructor.
 	 *
 	 * @param $rpcHost
 	 * @param $rpcUser

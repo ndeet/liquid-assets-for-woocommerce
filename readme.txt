@@ -1,4 +1,4 @@
-=== WooCommerce Liquid Assets ===
+=== Liquid Assets for WooCommerce ===
 
 Contributors: ndeet
 Tags: WooCommerce, Liquid Network, Bitcoin, cryptocurrency
@@ -75,7 +75,7 @@ Make also sure your coinos.io account / Elements node has enough funds of Liquid
 = Automatic installation =
 This is the easiest option as you can click through everything in the WordPress admin interface. Log in to your WordPress admin panel, navigate to the Plugins menu and click [Add New].
 	
-In the search field type "WooCommerce Liquid Assets". You can install it by simply clicking [Install Now]. After clicking that link you will be asked if you're sure you want to install the plugin. Click yes and WordPress will automatically complete the installation. After installation has finished, click the [activate plugin] link.
+In the search field type "Liquid Assets for WooCommerce". You can install it by simply clicking [Install Now]. After clicking that link you will be asked if you're sure you want to install the plugin. Click yes and WordPress will automatically complete the installation. After installation has finished, click the [activate plugin] link.
 	
 = Manual installation via the WordPress interface =
 1. Download the plugin zip file to your computer

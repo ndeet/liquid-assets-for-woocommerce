@@ -1,25 +1,25 @@
 <?php
 /*
-Plugin Name: WooCommerce Liquid Assets
+Plugin Name: Liquid Assets for WooCommerce
 Description: Configure your products to reference Liquid Assets. The plugin will send Liquid Assets (coinos.io and your own Elements RPC node supported) to customers after successful payment.
-Version:     1.7
+Version:     1.8
 Author:      Andreas Tasch
 Author URI:  https://attec.at
 License:     MIT
 
 Copyright 2021 Andreas Tasch (email : info@attec.at)
-WooCommerce Liquid Assets is free software: you can redistribute it and/or modify
+Liquid Assets for WooCommerce is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 2 of the License, or
 any later version.
 
-WooCommerce Liquid Assets is distributed in the hope that it will be useful,
+Liquid Assets for WooCommerce is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
 You should have received a copy of the MIT license
-along with this WooCommerce Liquid Assets plugin. If not, see https://opensource.org/licenses/MIT.
+along with this Liquid Assets for WooCommerce plugin. If not, see https://opensource.org/licenses/MIT.
 */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -28,7 +28,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Includes.
 require_once plugin_dir_path(__FILE__) . '/includes/wcla-admin-settings.php';
-require_once plugin_dir_path(__FILE__) . '/includes/ElementsClient.php';
+require_once plugin_dir_path(__FILE__) . '/includes/WCLAElementsClient.php';
 
 /**
  * Display the custom Liquid assets fields.
@@ -62,10 +62,8 @@ add_action( 'woocommerce_product_options_general_product_data', 'wcla_create_cus
  */
 function wcla_save_custom_field( $product_id ) {
 	$product = wc_get_product( $product_id );
-	$liquid_asset_id = $_POST['liquid_asset_id'] ?? '';
-	$product->update_meta_data( 'liquid_asset_id', sanitize_text_field( $liquid_asset_id ) );
-	$liquid_address = $_POST['liquid_address'] ?? '';
-	$product->update_meta_data( 'liquid_address', sanitize_text_field( $liquid_address ) );
+	$product->update_meta_data( 'liquid_asset_id', sanitize_text_field( $_POST['liquid_asset_id'] ?? '' ) );
+	$product->update_meta_data( 'liquid_address', sanitize_text_field( $_POST['liquid_address'] ?? '' ) );
 	$product->save();
 }
 add_action( 'woocommerce_process_product_meta', 'wcla_save_custom_field' );
@@ -210,7 +208,7 @@ function wcla_order_payment_complete( $order_id ) {
 				if ($status === 'success') {
 					$msg_asset_sent_status = 'Liquid asset: asset already sent, not sending again.';
 				} else if ($status === 'error') {
-					$msg_asset_sent_status = 'Liquid asset: asset sending failed before, not trying again. Please check manually.'
+					$msg_asset_sent_status = 'Liquid asset: asset sending failed before, not trying again. Please check manually.';
 				}
 
 				$logger->add('liquid-assets', $msg_asset_sent_status);
@@ -357,14 +355,14 @@ function wcla_coinos_send_liquid_asset( $liquid_address, $asset_id, $quantity ) 
 /**
  * Init Elements RPC client.
  *
- * @return ElementsClient|null
+ * @return WCLAElementsClient|null
  * @throws Exception
  */
 function wcla_elements_rpc_init() {
 	if (!empty($rpc_user = get_option('wcla_plugin_options')['rpc_user'])
 	&& !empty($rpc_pass = get_option('wcla_plugin_options')['rpc_pass'])
 	&& !empty($rpc_host = get_option('wcla_plugin_options')['rpc_host'])) {
-		return new ElementsClient($rpc_host, $rpc_user, $rpc_pass);
+		return new WCLAElementsClient($rpc_host, $rpc_user, $rpc_pass);
 	}
 	return null;
 }
@@ -436,7 +434,7 @@ function wcla_send_admin_mail($message) {
 	if (!empty($mails = get_option('wcla_plugin_options')['admin_mails'])) {
 		// Remove whitespaces.
 		$mails = preg_replace('/\s+/', '', $mails);
-		return wp_mail( $mails, 'Woocommerce Liquid Assets Plugin', $message);
+		return wp_mail( $mails, 'Liquid Assets for WooCommerce Plugin', $message);
 	}
 	return false;
 }

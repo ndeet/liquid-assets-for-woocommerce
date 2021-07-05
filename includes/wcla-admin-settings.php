@@ -67,7 +67,7 @@ function wcla_plugin_setting_mode() {
 	echo "<select id='wcla_plugin_setting_mode' name='wcla_plugin_options[wcla_plugin_setting_mode]'>";
 	foreach ( $items as $id => $value ) {
 		$selected = ( $selected_option == $id ) ? 'selected="selected"' : '';
-		echo "<option value='$id' $selected>$value</option>";
+		echo "<option value='" . esc_attr($id) . "' " . esc_attr($selected) . ">" . esc_attr($value) . "</option>";
 	}
 	echo "</select>";
 }
