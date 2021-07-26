@@ -88,3 +88,12 @@ In the search field type "Liquid Assets for WooCommerce". You can install it by 
 1. Download the plugin file to your computer and unzip it
 2. Using an FTP program, or your hosting control panel, upload the unzipped plugin folder to your WordPress installation's wp-content/plugins/ directory.
 3. Activate the plugin from the Plugins menu within the WordPress admin.
+
+== Changelog ==
+
+= 1.8.1 :: 2021-07-26 =
+### Changed
+* Do not send admin notification mails if asset was already successfully sent.
+
+= 1.8.0 :: 2021-07-26 =
+Initial public release.

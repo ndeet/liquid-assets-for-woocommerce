@@ -2,7 +2,7 @@
 /*
 Plugin Name: Liquid Assets for WooCommerce
 Description: Configure your products to reference Liquid Assets. The plugin will send Liquid Assets (coinos.io and your own Elements RPC node supported) to customers after successful payment.
-Version:     1.8
+Version:     1.8.1
 Author:      Andreas Tasch
 Author URI:  https://attec.at
 License:     MIT
@@ -213,7 +213,10 @@ function wcla_order_payment_complete( $order_id ) {
 
 				$logger->add('liquid-assets', $msg_asset_sent_status);
 				$order->add_order_note($msg_asset_sent_status);
-				wcla_send_admin_mail($msg_asset_sent_status . ' Order ID: ' . $order_id);
+				// Only send admin notification on error.
+				if ($status === 'error') {
+					wcla_send_admin_mail($msg_asset_sent_status . ' Order ID: ' . $order_id);
+				}
 				return false;
 			}
 
