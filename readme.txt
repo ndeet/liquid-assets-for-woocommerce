@@ -5,7 +5,7 @@ Tags: WooCommerce, Liquid Network, Bitcoin, cryptocurrency
 Requires at least: 4.9
 Tested up to: 5.8
 Requires PHP: 7.3
-Stable tag: 1.8.2
+Stable tag: 1.8.3
 License: MIT
 
 Configure your products to reference your own Liquid Assets. The plugin will send Liquid Assets (coinos.io and your Elements RPC node supported) to customers after successful payment.
@@ -90,6 +90,9 @@ In the search field type "Liquid Assets for WooCommerce". You can install it by 
 3. Activate the plugin from the Plugins menu within the WordPress admin.
 
 == Changelog ==
+= 1.8.3 :: 2021-08-26 =
+* Added: Banner images for plugin directory page.
+
 = 1.8.2 :: 2021-07-26 =
 * Added: Icons for plugin directory
 * Changed: Tested WP version 5.8.0 and changed supported version accordingly.

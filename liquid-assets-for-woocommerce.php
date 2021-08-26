@@ -2,8 +2,8 @@
 /*
 Plugin Name: Liquid Assets for WooCommerce
 Description: Configure your products to reference Liquid Assets. The plugin will send Liquid Assets (coinos.io and your own Elements RPC node supported) to customers after successful payment.
-Version:     1.8.2
-Author:      Andreas Tasch
+Version:     1.8.3
+Author:      ndeet
 Author URI:  https://attec.at
 License:     MIT
 
